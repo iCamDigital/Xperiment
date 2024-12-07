@@ -1,0 +1,13 @@
+{
+  "getting-started": "Getting Started",
+  "env-var": "Environment Variables",
+  "astria": "Astria",
+  "resend": "Resend",
+  "payment-gateway": "Payment Gateways",
+  "docker": "Docker",
+  "database": "Database",
+  "analytics": "Google Analytics",
+  "starting-server": "Starting Server",
+  "auth": "Authentication",
+  "stopping-server": "Stopping Server"
+}

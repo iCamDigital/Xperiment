@@ -1,0 +1,37 @@
+## Creating Resend Account
+
+import { Callout } from "nextra/components";
+
+<Callout type="info">
+  Resend is not mandatory. You can use any other email service provider. Please
+  keep the environment variable names as shown in the documentation.
+</Callout>
+
+To use SMTP service to send your email notifications within the app, you need to create an account on any email
+service provider such as [Resend](https://resend.com/). Once you have created an account, you need an API key.
+In case of Resend, you can get your API key from the [API page](https://resend.com/api-keys).
+
+import { Steps } from 'nextra/components'
+ 
+<Steps>
+### Verifying Domain
+
+Resend is an SMTP toolkit, hence, you need to attach a domain that you already have or plan to use with the
+application. Navigate to the `Domain` tab and click `Add Domain` button. Enter your domain that you wish to use
+and then enter all of the records provided by Resend with in the DNS Records section of your domain registrar
+account. For a better guideline, you can follow the
+[Custom Domain With Resend Tutorial By Codewithguillaume](https://youtu.be/7HNJLUMV_TY).
+
+<Callout type="warning">
+  Please make sure that you enter the `DNS Records` in the account you used to
+  purchase your domain. Sometimes, users mistakenly enter the `DNS Records` in
+  the hosting account.
+</Callout>
+
+### Replacing API Key
+
+Once you have setup your domain, Navigate to the `API Keys` tab and generate a new key. Replace
+`your-resend-api-key` with your original `Resend API key` from [API page](https://resend.com/api-keys). This will
+help you to send emails using your email service.
+
+</Steps>

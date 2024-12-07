@@ -1,0 +1,21 @@
+{
+  "intro": "Introduction",
+  "how-it-works": "How It Works",
+  "buying-guide": "Buying Guide",
+  "-- environments": {
+    "type": "separator",
+    "title": "Environments"
+  },
+  "local-env": "Local Environment",
+  "prod-env": "Production Environment",
+  "custom-env": "Custom Server Environment",
+  "-- more": {
+    "type": "separator",
+    "title": "More"
+  },
+  "framecast-ai-link": {
+    "title": "Framecast AI ↗",
+    "href": "https://framecast-ai.vercel.app/",
+    "newWindow": true
+  }
+}

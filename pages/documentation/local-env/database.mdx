@@ -1,0 +1,62 @@
+## Supabase
+
+import { Callout } from "nextra/components";
+
+<Callout type="info">
+  Supabase is completely open-source. Personally, we're using Supabase itself to
+  host the database. The experience has been smooth with no issues. You can also
+  use its self-hosting capabilities to host it on your own server or using
+  Docker as shown in the guide.
+</Callout>
+
+<Callout type="warning">
+  Please make sure that Docker is installed in your system and is running before
+  following the given guide. If you're looking for more options such as
+  [AWS](https://aws.amazon.com/) or other cloud platforms, visit the official
+  [Self-hosting Supabase guide](https://supabase.com/docs/guides/self-hosting).
+</Callout>
+
+The database service used in Framecast AI is [Supabase](https://supabase.com/). Supabase is an open-source Firebase alternative. It is a
+service that provides a Postgres database with a RESTful API, authentication, and real-time capabilities.
+
+To use Supabase with for local environment, you need to install the following dependencies:
+
+```json filename="terminal" copy
+npx install supabase
+```
+
+After installing the dependencies, we need to start a local server for Supabase. You can start the server by running
+the following command:
+
+```json filename="terminal" copy
+npx supabase start
+```
+
+This will start a dockerized virtual container in your local machine while providing you with the following values
+in your terminal:
+
+```json filename="terminal" copy
+NEXT_PUBLIC_SUPABASE_URL = your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY = your-supabase-anon-key
+NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY = your-supabase-service-role-key
+```
+
+Once you have these values, you can replace them with in your `.env` file by following the given steps:
+
+import { Steps } from 'nextra/components'
+ 
+<Steps>
+
+### Replacing Supabase URL, Supabase Anon Key, and Supabase Service Role Key
+
+Replace `your-supabase-url` with your original `Supabase URL`, `your-supabase-anon-key` with your original
+`Supabase Anon Key`, and `your-supabase-service-role-key` with your original `Supabase Service Role Key` from the
+values provided in your terminal.
+
+### Ensure Replaced Values For Public Variables
+
+Ensure that the replaced values are also repeated for the public variables `NEXT_PUBLIC_SUPABASE_URL`,
+`NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `NEXT_PUBLIC_SUPABASE_SERVICE_ROLE_KEY`. For certain services, the public
+variables are used to access the values in the database.
+
+</Steps>

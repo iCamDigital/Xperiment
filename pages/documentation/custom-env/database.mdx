@@ -1,0 +1,123 @@
+## Supabase
+
+import { Callout } from "nextra/components";
+
+<Callout type="info">
+  Supabase is completely open-source. We'll be using Docker to self-host
+  Supabase on our local server. This provides full control over your data and
+  infrastructure while maintaining all the powerful features of Supabase.
+</Callout>
+
+<Callout type="warning">
+  Please make sure that Docker and Docker Compose are installed on your server
+  and running before following this guide. Visit the official [Docker
+  documentation](https://docs.docker.com/engine/install/) for installation
+  instructions if needed.
+</Callout>
+
+The database service used in our application is [Supabase](https://supabase.com/). Supabase is an open-source Firebase alternative. It provides a Postgres database with a RESTful API, authentication, and real-time capabilities.
+
+To self-host Supabase using Docker, follow these steps:
+
+import { Steps } from 'nextra/components'
+ 
+<Steps>
+
+### Clone the Supabase Docker Repository
+
+First, clone the official Supabase Docker repository:
+
+```bash filename="terminal" copy
+git clone https://github.com/supabase/supabase-docker.git
+cd supabase-docker
+```
+
+### Configure Environment Variables
+
+Create a copy of the example environment file:
+
+```bash filename="terminal" copy
+cp .env.example .env
+```
+
+Edit the `.env` file to set your configurations:
+
+```bash filename=".env" copy
+# Database Configuration
+POSTGRES_PASSWORD=your-secure-password
+JWT_SECRET=your-jwt-secret-at-least-32-characters
+DASHBOARD_USERNAME=your-admin-user
+DASHBOARD_PASSWORD=your-admin-password
+
+# API Configuration
+API_EXTERNAL_URL=http://your-server-ip:8000
+KONG_DNS_RESOLVER=8.8.8.8
+
+# Studio Configuration
+STUDIO_DEFAULT_ORGANIZATION=your-org-name
+STUDIO_DEFAULT_PROJECT=default
+
+# SMTP Configuration (for Magic Link auth)
+SMTP_HOST=your-smtp-host
+SMTP_PORT=587
+SMTP_USER=your-smtp-user
+SMTP_PASS=your-smtp-password
+SMTP_SENDER_NAME=Your App Name
+SMTP_SENDER_EMAIL=noreply@yourdomain.com
+```
+
+### Start Supabase Services
+
+Launch all Supabase services using Docker Compose:
+
+```bash filename="terminal" copy
+docker compose up -d
+```
+
+### Create Database Tables
+
+In your source code folder, you will find a folder named supabase. This folder contains the SQL files for the
+database tables. Navigate to this folder and open migrations folder inside. You will find the SQL file named
+RandomNumber_remote_schema. Open it and copy all of the PostgreSQL queries. Access the Supabase Studio at
+`http://your-server-ip:3000` and click on the SQL Editor tab. Paste the copied queries in the SQL Editor and click
+on the Run button. This will create the necessary tables in your database.
+
+### Configure Authentication
+
+Navigate to Authentication settings in Supabase Studio:
+
+1. Go to Authentication > Email Templates
+2. Configure the Magic Link template:
+
+```html filename="Magic Link Template" copy
+<h2>Magic Link</h2>
+<p>Follow this link to login:</p>
+<p>
+  <a href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email"
+    >Log In</a
+  >
+</p>
+```
+
+3. Set up Site URL and Redirect URLs:
+
+```text filename="URL Configuration" copy
+Site URL = http://your-server-domain
+Redirect URLs = http://your-server-domain/**
+```
+
+### Update Application Environment Variables
+
+In your application's `.env` file, update the Supabase configuration:
+
+```bash filename=".env" copy
+NEXT_PUBLIC_SUPABASE_URL=http://your-server-ip:8000
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+```
+
+You can find these keys in the Supabase Studio under Project Settings > API.
+
+</Steps>
+
+This completes your database setup on Supabase. You can now proceed to deploy your application.

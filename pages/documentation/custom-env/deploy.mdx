@@ -1,0 +1,76 @@
+## Server Deployment
+
+import { Callout } from "nextra/components";
+
+<Callout type="info">
+  This guide covers deploying the application directly on your server. Make sure
+  you have completed the database setup before proceeding.
+</Callout>
+
+To deploy the application on your server, follow these steps:
+
+import { Steps } from 'nextra/components'
+ 
+<Steps>
+
+### Install PM2 Process Manager
+
+Install PM2 globally on your server:
+
+```bash filename="terminal" copy
+npm install -g pm2
+```
+
+### Importing Codebase
+
+In your `SSH Terminal`, type the following command to create a directory:
+
+```bash filename="terminal" copy
+mkdir /var/www/nextjs
+```
+
+Navigate to the above created directory via your server's `File Manager`. Upload the codebase to the directory.
+
+### Build the Application
+
+Navigate to your application directory and build:
+
+```bash filename="terminal" copy
+cd "/var/www/nextjs/source code"
+npm install
+npm run build
+```
+
+### Start the Application
+
+Start the application using PM2:
+
+```bash filename="terminal" copy
+pm2 start npm --name "your-app" -- start
+```
+
+### Save PM2 Configuration
+
+Save the PM2 configuration to survive server restarts:
+
+```bash filename="terminal" copy
+pm2 save
+pm2 startup
+```
+
+### Monitor the Application
+
+You can monitor your application using:
+
+```bash filename="terminal" copy
+pm2 monitor
+```
+
+</Steps>
+
+<figure>
+  <>![Framecast AI](../../../assets/docs/7.png)</>
+  <figcaption>Framecast AI running in a live environment.</figcaption>
+</figure>
+
+Framecast AI is ready and fully functional to use now.
